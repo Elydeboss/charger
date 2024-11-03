@@ -1,0 +1,270 @@
+
+<html><head><base href="." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerUp - Premium Chargers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4CAF50',
+            secondary: '#2196F3'
+          }
+        }
+      }
+    }
+    </script>
+    <style>
+    .slide {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .slide.active {
+      opacity: 1;
+    }
+    </style>
+    </head>
+    <body class="bg-white dark:bg-gray-900 transition-colors duration-200">
+    
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed w-full z-50">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" class="flex items-center space-x-3">
+          <span class="text-2xl font-bold text-primary dark:text-green-400">PowerUp</span>
+        </a>
+        <button id="theme-toggle" class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+          </svg>
+        </button>
+        <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800 dark:border-gray-700">
+            <li><a href="#home" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary md:p-0 dark:text-white md:dark:hover:text-primary dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Home</a></li>
+            <li><a href="#about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary md:p-0 dark:text-white md:dark:hover:text-primary dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a></li>
+            <li><a href="#products" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary md:p-0 dark:text-white md:dark:hover:text-primary dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</a></li>
+            <li><a href="#reviews" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary md:p-0 dark:text-white md:dark:hover:text-primary dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Reviews</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Home Section -->
+    <section id="home" class="pt-20">
+      <!-- Hero Section -->
+      <div class="relative h-[600px] bg-gradient-to-r from-primary to-secondary">
+        <div id="slider" class="relative h-full overflow-hidden">
+          <div class="slide active flex items-center justify-center">
+            <div class="text-center text-white">
+              <h1 class="text-5xl font-bold mb-4">Premium Charging Solutions</h1>
+              <p class="text-xl">Power up your life with our high-quality chargers</p>
+            </div>
+          </div>
+          <div class="slide flex items-center justify-center">
+            <div class="text-center text-white">
+              <h1 class="text-5xl font-bold mb-4">Fast Charging Technology</h1>
+              <p class="text-xl">Experience lightning-fast charging speeds</p>
+            </div>
+          </div>
+          <div class="slide flex items-center justify-center">
+            <div class="text-center text-white">
+              <h1 class="text-5xl font-bold mb-4">Universal Compatibility</h1>
+              <p class="text-xl">Works with all your devices</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- About Section -->
+      <section id="about" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-8 dark:text-white">About Us</h2>
+          <p class="text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto">
+            PowerUp is your trusted source for premium charging solutions. We specialize in providing high-quality chargers
+            that combine innovative technology with reliability and safety.
+          </p>
+        </div>
+      </section>
+    
+      <!-- Products Section -->
+      <section id="products" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-8 dark:text-white">Our Products</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product cards will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </section>
+    
+      <!-- Reviews Section -->
+      <section id="reviews" class="py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-8 dark:text-white">Customer Reviews</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Review cards -->
+          </div>
+        </div>
+      </section>
+    
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">PowerUp</h3>
+              <p class="text-gray-300">Your trusted source for premium charging solutions.</p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+              <ul class="space-y-2">
+                <li><a href="#home" class="text-gray-300 hover:text-white">Home</a></li>
+                <li><a href="#about" class="text-gray-300 hover:text-white">About</a></li>
+                <li><a href="#products" class="text-gray-300 hover:text-white">Products</a></li>
+                <li><a href="#reviews" class="text-gray-300 hover:text-white">Reviews</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+              <p class="text-gray-300">Email: info@powerup.com</p>
+              <p class="text-gray-300">Phone: (555) 123-4567</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+    // Theme Toggle
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    
+    // Change the icons inside the button based on previous settings
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggleLightIcon.classList.remove('hidden');
+        document.documentElement.classList.add('dark');
+    } else {
+        themeToggleDarkIcon.classList.remove('hidden');
+    }
+    
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        themeToggleDarkIcon.classList.toggle('hidden');
+        themeToggleLightIcon.classList.toggle('hidden');
+    
+        if (localStorage.getItem('color-theme')) {
+            if (localStorage.getItem('color-theme') === 'light') {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            }
+        } else {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+    });
+    
+    // Image Slider
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+    
+    setInterval(nextSlide, 5000);
+    
+    // Products Data
+    const products = [
+        {
+            name: "Fast Charge Pro",
+            price: 29.99,
+            description: "65W USB-C Power Delivery Charger"
+        },
+        {
+            name: "Wireless Charging Pad",
+            price: 39.99,
+            description: "15W Qi Wireless Charging Station"
+        },
+        {
+            name: "Travel Adapter",
+            price: 24.99,
+            description: "Universal Travel Charging Adapter"
+        }
+    ];
+    
+    // Render Products
+    const productsContainer = document.querySelector('#products .grid');
+    productsContainer.innerHTML = products.map(product => `
+        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6 transition-transform hover:-translate-y-1">
+            <h3 class="text-xl font-bold mb-2 dark:text-white">${product.name}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">${product.description}</p>
+            <div class="text-primary dark:text-green-400 text-xl font-bold mb-4">$${product.price}</div>
+            <button class="w-full bg-primary hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                Add to Cart
+            </button>
+        </div>
+    `).join('');
+    
+    // Reviews Data
+    const reviews = [
+        {
+            name: "John D.",
+            rating: 5,
+            comment: "Best charger I've ever used! Fast charging and reliable."
+        },
+        {
+            name: "Sarah M.",
+            rating: 4,
+            comment: "Great product, works perfectly with all my devices."
+        },
+        {
+            name: "Mike R.",
+            rating: 5,
+            comment: "Excellent build quality and fast shipping."
+        }
+    ];
+    
+    // Render Reviews
+    const reviewsContainer = document.querySelector('#reviews .grid');
+    reviewsContainer.innerHTML = reviews.map(review => `
+        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-6">
+            <div class="flex items-center mb-4">
+                <div class="text-yellow-400 text-xl">
+                    ${'★'.repeat(review.rating)}
+                </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">${review.comment}</p>
+            <p class="font-bold dark:text-white">${review.name}</p>
+        </div>
+    `).join('');
+    </script>
+    </body></html>
